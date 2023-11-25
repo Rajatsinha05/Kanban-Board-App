@@ -1,19 +1,21 @@
-// SignUp.js
 
 import React, { useState } from "react";
 import "../css/signup.css";
-// import Navbar from "../components/Navbar";
+
+import { useDispatch } from 'react-redux'
+import { signup } from "../redux/Action";
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({
+  let dispatch=useDispatch()
+  const [userData, setUserData] = useState({
     username: "",
     email: "",
     password: "",
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setUserData({
+      ...userData,
       [e.target.name]: e.target.value,
     });
   };
@@ -21,6 +23,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle signup logic here
+    dispatch(signup(userData))
   };
 
   return (
@@ -35,7 +38,7 @@ const SignUp = () => {
             type="text"
             id="username"
             name="username"
-            value={formData.username}
+            value={userData.username}
             onChange={handleChange}
             required
           />
@@ -45,7 +48,7 @@ const SignUp = () => {
             type="email"
             id="email"
             name="email"
-            value={formData.email}
+            value={userData.email}
             onChange={handleChange}
             required
           />
@@ -55,7 +58,7 @@ const SignUp = () => {
             type="password"
             id="password"
             name="password"
-            value={formData.password}
+            value={userData.password}
             onChange={handleChange}
             required
           />

@@ -1,21 +1,19 @@
-// Login.js
-
 import React, { useState } from "react";
-// import { useDispatch } from 'react-redux'; // Assuming you're using Redux for state management
+import { useDispatch } from "react-redux";
 import "../css/login.css";
-// import Navbar from "../components/Navbar";
+import { login } from "../redux/Action";
 
 const Login = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const [formData, setFormData] = useState({
+  const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setUserData({
+      ...userData,
       [e.target.name]: e.target.value,
     });
   };
@@ -23,15 +21,11 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // dispatch({
-    //   payload: formData,
-    // });
+    dispatch(login(userData));
   };
 
   return (
     <div>
-
-
       <div className="login-container">
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
@@ -40,7 +34,7 @@ const Login = () => {
             type="email"
             id="email"
             name="email"
-            value={formData.email}
+            value={userData.email}
             onChange={handleChange}
             required
           />
@@ -50,7 +44,7 @@ const Login = () => {
             type="password"
             id="password"
             name="password"
-            value={formData.password}
+            value={userData.password}
             onChange={handleChange}
             required
           />
