@@ -1,9 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../css/login.css";
 import { login } from "../redux/Action";
-
+import Cookies from "universal-cookie";
+import { Navigate, useNavigate } from "react-router-dom";
 const Login = () => {
+  const cookies = new Cookies(null, { path: "/" });
+
+  let nav = useNavigate();
+  const token = useSelector((store) => store.user);
+  console.log("token: ", token);
   const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({
@@ -11,17 +17,22 @@ const Login = () => {
     password: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
+
     setUserData({
       ...userData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(login(userData));
+    try {
+      dispatch(login(userData));
+      cookies.set("token", token.token);
+      nav("/");
+    } catch (error) {}
   };
 
   return (

@@ -1,0 +1,45 @@
+.task-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #4b0082;; /* Purple background */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+   margin-top: 10%;
+  }
+  
+  .task-form div {
+    margin-bottom: 15px;
+  }
+  
+  .task-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffffff; /* White text */
+  }
+  
+  .task-form input,
+  .task-form textarea,
+  .task-form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ffffff; /* White border */
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #ffffff; /* White background */
+    color: purple; /* Purple text */
+  }
+  
+  .task-form button {
+    background-color: #ffffff; /* White button */
+    color: purple; /* Purple text */
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .task-form button:hover {
+    background-color: #d1ceff; /* Lighter purple on hover */
+  }
+  
