@@ -145,4 +145,5 @@ export {
   deleteTask,
   login,
   signup,
+  loginSuccess
 };

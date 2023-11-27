@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../css/nav.css";
-// Navbar.js
+import Cookies from "universal-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess } from "../redux/Action";
 
 const Navbar = () => {
+  const cookies = new Cookies();
+
+  const dispatch = useDispatch();
+  const token = useSelector((store) => store.user);
+
+  const userToken = cookies.get("token");
+
+  useEffect(() => {
+    if(userToken){
+      dispatch(loginSuccess(userToken))
+    }
+  }, [])
+const LogOut=()=>{
+  Cookies.
+}
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -20,9 +37,8 @@ const Navbar = () => {
           <Link to="/task" className="navbar-link">
             Add Task
           </Link>
-
           <Link to="/login" className="navbar-link">
-            Login
+            {token ? <span onClick={LogOut}> LogOut</span> :<span>Login</span>}
           </Link>
           <Link to="/signup" className="navbar-link">
             Sign Up
