@@ -1,0 +1,60 @@
+/* task.css */
+
+.task {
+  border: 1px solid #fff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #673ab7;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.task:hover {
+  background-color: #512da8;
+}
+
+.task-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.task-status {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.task-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.update-button,
+.delete-button,
+.view-button {
+  padding: 8px;
+  cursor: pointer;
+  margin-right: 8px;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.update-button:hover {
+  background-color: #311b92;
+  color: #fff;
+}
+
+.delete-button:hover {
+  background-color: #9c27b0;
+  color: #fff;
+}
+
+.view-button:hover {
+  background-color: #1976d2;
+  color: #fff;
+}

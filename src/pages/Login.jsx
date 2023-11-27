@@ -30,6 +30,7 @@ const Login = () => {
     e.preventDefault();
     try {
       dispatch(login(userData));
+      
       cookies.set("token", token.token);
       nav("/");
     } catch (error) {}
