@@ -2,36 +2,33 @@
 
 import React, { useState } from "react";
 import "../css/task.css";
+import { useDispatch } from "react-redux";
+import { deleteTask, updateTask } from "../redux/Action";
 
-const Task = ({ id, title, status, onUpdate }) => {
+const Task = ({ _id, title, status, DeleteOn, description, dueDate, assignee ,onUpdate}) => {
+  const dispatch = useDispatch();
   const [newStatus, setNewStatus] = useState(status);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showAllData, setShowAllData] = useState(false);
-
-  const handleUpdate = () => {
-    setShowDropdown(!showDropdown);
-  };
 
   const handleStatusChange = (selectedStatus) => {
     setNewStatus(selectedStatus);
   };
 
-  const handleSaveUpdate = () => {
-    onUpdate(id, newStatus);
-    setShowDropdown(false);
-  };
-
-  const handleCancelUpdate = () => {
-    setShowDropdown(false);
-  };
-
   const handleDelete = () => {
-    // Implement your delete logic here
-    console.log(`Delete task with ID ${id}`);
+    DeleteOn(_id);
   };
 
   const handleView = () => {
     setShowAllData(!showAllData);
+  };
+
+  const handleStatusUpdate = (status) => {
+    // Implement your update logic here
+    // dispatch(updateTask(_id, { status }));
+    console.log(status);
+    onUpdate(_id,status)
+    setShowDropdown(false);
   };
 
   return (
@@ -40,34 +37,31 @@ const Task = ({ id, title, status, onUpdate }) => {
       <div className="task-status">Status: {status}</div>
       {showAllData && (
         <div>
-          {/* Display additional data here */}
-          <p>Task ID: {id}</p>
+          <p>{description}</p>
+          <span>Due Date: {dueDate} </span>
+          <br />
+          <span>{assignee}</span>
         </div>
       )}
       {showDropdown && (
         <div className="status-dropdown">
-          <label>Select Status:</label>
-          <select
-            value={newStatus}
-            onChange={(e) => handleStatusChange(e.target.value)}
-          >
-            <option value="inprogress">In Progress</option>
-            <option value="done">Done</option>
-          </select>
-          <button onClick={handleSaveUpdate}>Save</button>
-          <button onClick={handleCancelUpdate}>Cancel</button>
+          <button onClick={() => handleStatusUpdate("inprogress")}>In Progress</button>
+          <button onClick={() => handleStatusUpdate("done")}>Done</button>
+          <button onClick={() => setShowDropdown(false)}>Cancel</button>
         </div>
       )}
       <div className="task-buttons">
-        <button className="update-button" onClick={handleUpdate}>
-          Update
-        </button>
         <button className="delete-button" onClick={handleDelete}>
           Delete
         </button>
         <button className="view-button" onClick={handleView}>
           {showAllData ? "Hide" : "View"}
         </button>
+        {!showDropdown && (
+          <button className="status-button" onClick={() => setShowDropdown(true)}>
+            Change Status
+          </button>
+        )}
       </div>
     </div>
   );

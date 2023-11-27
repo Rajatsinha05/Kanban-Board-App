@@ -30,7 +30,7 @@ const SignUp = () => {
     e.preventDefault();
     try {
       dispatch(signup(userData));
-      cookies.set("token", token.token);
+      cookies.set("token", token);
       nav("/");
     } catch (error) {
       console.error("Signup failed:", error);

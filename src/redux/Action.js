@@ -1,4 +1,3 @@
-// actions.js
 
 import axios from "axios";
 import {
@@ -47,8 +46,8 @@ const signupSuccess = (userData) => ({
 // Thunk actions
 
 const handleApiError = (error, actionName) => {
-  console.log(`Error ${actionName}:`, error.message);
-  // Handle the error as needed, e.g., show an error message to the user
+  console.log('error, actionName: ', error, actionName);
+  
 };
 
 const getTasks = (token ) => async (dispatch) => {
@@ -66,7 +65,7 @@ const getTasks = (token ) => async (dispatch) => {
 };
 
 const createTask = (taskData,token) => async (dispatch) => {
-  console.log('token: ', token);
+  
   try {
     const response = await axios.post(
       "https://kanban-board.cyclic.app/task/create",
@@ -94,13 +93,14 @@ const updateTask = (taskId, updatedTaskData,token) => async (dispatch) => {
         }
       }
     );
-    dispatch(updateTaskSuccess(taskId, response.data));
+    dispatch(updateTaskSuccess(taskId, updatedTaskData));
   } catch (error) {
     handleApiError(error, "updating task");
   }
 };
 
 const deleteTask = (taskId,token) => async (dispatch) => {
+  console.log('token: ', token);
   try {
     await axios.delete(`https://kanban-board.cyclic.app/task/delete/${taskId}`, {
       headers: {
@@ -120,7 +120,7 @@ const login = (userData) => async (dispatch) => {
       "https://kanban-board.cyclic.app/user/login",
       userData
     );
-    dispatch(loginSuccess(response.data));
+    dispatch(loginSuccess(response.data.token));
   } catch (error) {
     handleApiError(error, "logging in");
   }
@@ -132,7 +132,7 @@ const signup = (userData) => async (dispatch) => {
       "https://kanban-board.cyclic.app/user/signup",
       userData
     );
-    dispatch(signupSuccess(response.data));
+    dispatch(signupSuccess(response.data.token));
   } catch (error) {
     handleApiError(error, "signing up");
   }
