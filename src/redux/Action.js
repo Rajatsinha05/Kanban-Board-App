@@ -46,13 +46,13 @@ const signupSuccess = (userData) => ({
 // Thunk actions
 
 const handleApiError = (error, actionName) => {
-  console.log('error, actionName: ', error, actionName);
+  
   
 };
 
 const getTasks = (token ) => async (dispatch) => {
   try {
-    const response = await axios.get("https://kanban-board.cyclic.app/task", {
+    const response = await axios.get("https://kanban-board.cyclic.app/task/", {
       headers: {
         Authorization: token
         
@@ -100,7 +100,7 @@ const updateTask = (taskId, updatedTaskData,token) => async (dispatch) => {
 };
 
 const deleteTask = (taskId,token) => async (dispatch) => {
-  console.log('token: ', token);
+  
   try {
     await axios.delete(`https://kanban-board.cyclic.app/task/delete/${taskId}`, {
       headers: {

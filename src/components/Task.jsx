@@ -1,22 +1,26 @@
-// Task.jsx
-
 import React, { useState } from "react";
 import "../css/task.css";
-import { useDispatch } from "react-redux";
-import { deleteTask, updateTask } from "../redux/Action";
 
-const Task = ({ _id, title, status, DeleteOn, description, dueDate, assignee ,onUpdate}) => {
-  const dispatch = useDispatch();
+const Task = ({
+  _id,
+  title,
+  status,
+  description,
+  dueDate,
+  assignee,
+  onUpdate,
+  onDelete,
+}) => {
   const [newStatus, setNewStatus] = useState(status);
-  const [showDropdown, setShowDropdown] = useState(false);
   const [showAllData, setShowAllData] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const handleStatusChange = (selectedStatus) => {
     setNewStatus(selectedStatus);
   };
 
   const handleDelete = () => {
-    DeleteOn(_id);
+    onDelete(_id);
   };
 
   const handleView = () => {
@@ -24,10 +28,7 @@ const Task = ({ _id, title, status, DeleteOn, description, dueDate, assignee ,on
   };
 
   const handleStatusUpdate = (status) => {
-    // Implement your update logic here
-    // dispatch(updateTask(_id, { status }));
-    console.log(status);
-    onUpdate(_id,status)
+    onUpdate(_id, status);
     setShowDropdown(false);
   };
 
@@ -38,14 +39,16 @@ const Task = ({ _id, title, status, DeleteOn, description, dueDate, assignee ,on
       {showAllData && (
         <div>
           <p>{description}</p>
-          <span>Due Date: {dueDate} </span>
+          <span>Due Date: {dueDate}</span>
           <br />
           <span>{assignee}</span>
         </div>
       )}
       {showDropdown && (
         <div className="status-dropdown">
-          <button onClick={() => handleStatusUpdate("inprogress")}>In Progress</button>
+          <button onClick={() => handleStatusUpdate("inprogress")}>
+            In Progress
+          </button>
           <button onClick={() => handleStatusUpdate("done")}>Done</button>
           <button onClick={() => setShowDropdown(false)}>Cancel</button>
         </div>
@@ -58,7 +61,10 @@ const Task = ({ _id, title, status, DeleteOn, description, dueDate, assignee ,on
           {showAllData ? "Hide" : "View"}
         </button>
         {!showDropdown && (
-          <button className="status-button" onClick={() => setShowDropdown(true)}>
+          <button
+            className="status-button"
+            onClick={() => setShowDropdown(true)}
+          >
             Change Status
           </button>
         )}

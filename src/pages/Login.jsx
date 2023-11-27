@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import "../css/login.css";
 import { login } from "../redux/Action";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../css/login.css";
 
 const Login = () => {
   const cookies = new Cookies(null, { path: "/" });
@@ -11,55 +14,69 @@ const Login = () => {
   const dispatch = useDispatch();
   const token = useSelector((store) => store.user);
 
-  const [userData, setUserData] = useState({
-    email: "",
-    password: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleChange = ({ target }) => {
-    const { name, value } = target;
-    setUserData((prevUserData) => ({ ...prevUserData, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
     try {
-      await dispatch(login(userData));
-      const userToken = token; // Assuming token is a string
-      console.log('userToken: ', userToken);
+      await dispatch(login(data));
+      const userToken = token;
+      toast.success("Login successful!", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       cookies.set("token", userToken);
-      navigate("/", { replace: true });
+      setTimeout(() => {
+        navigate("/", { replace: true });
+      }, 1000);
     } catch (error) {
-      console.error("Login failed:", error);
+      toast.error("Login failed. Please check your credentials.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
 
   return (
     <div className="login-container">
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email:</label>
         <input
           type="email"
           id="email"
           name="email"
-          value={userData.email}
-          onChange={handleChange}
-          required
+          {...register("email", { required: "Email is required" })}
         />
+        {errors.email && <p>{errors.email.message}</p>}
 
         <label htmlFor="password">Password:</label>
         <input
           type="password"
           id="password"
           name="password"
-          value={userData.password}
-          onChange={handleChange}
-          required
+          {...register("password", { required: "Password is required" })}
         />
+        {errors.password && <p>{errors.password.message}</p>}
 
         <button type="submit">Login</button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
