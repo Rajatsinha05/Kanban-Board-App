@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; // Import useHistory
 import "../css/nav.css";
 import Cookies from "universal-cookie";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,20 +7,23 @@ import { loginSuccess } from "../redux/Action";
 
 const Navbar = () => {
   const cookies = new Cookies();
-
   const dispatch = useDispatch();
+  // const history = useHistory(); // Initialize useHistory
   const token = useSelector((store) => store.user);
-
   const userToken = cookies.get("token");
 
   useEffect(() => {
-    if(userToken){
-      dispatch(loginSuccess(userToken))
+    if (userToken) {
+      dispatch(loginSuccess(userToken));
     }
-  }, [])
-const LogOut=()=>{
-  Cookies.
-}
+  }, []);
+
+  const LogOut = () => {
+    cookies.remove("token");
+    
+    window.location.reload();
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -38,10 +41,10 @@ const LogOut=()=>{
             Add Task
           </Link>
           <Link to="/login" className="navbar-link">
-            {token ? <span onClick={LogOut}> LogOut</span> :<span>Login</span>}
+            {token ? <span onClick={LogOut}> LogOut</span> : <span>Login</span>}
           </Link>
           <Link to="/signup" className="navbar-link">
-            Sign Up
+           {token ? null : "Signup"}
           </Link>
         </div>
       </div>
