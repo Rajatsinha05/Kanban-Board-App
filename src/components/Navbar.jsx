@@ -8,7 +8,7 @@ import { loginSuccess } from "../redux/Action";
 const Navbar = () => {
   const cookies = new Cookies();
   const dispatch = useDispatch();
-  // const history = useHistory(); // Initialize useHistory
+  
   const token = useSelector((store) => store.user);
   const userToken = cookies.get("token");
 

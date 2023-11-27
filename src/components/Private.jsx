@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate} from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Cookies from "universal-cookie";
 const Private = ({ children }) => {
   const cookies = new Cookies();

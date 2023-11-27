@@ -57,9 +57,7 @@ const TaskList = () => {
     try {
       await dispatch(updateTask(id, { status }, data.user));
       setTasks((prevTasks) =>
-        prevTasks.map((task) =>
-          task._id === id ? { ...task, status } : task
-        )
+        prevTasks.map((task) => (task._id === id ? { ...task, status } : task))
       );
       toast.success("Task updated successfully!", {
         position: "top-center",

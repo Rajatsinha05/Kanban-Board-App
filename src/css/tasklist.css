@@ -1,4 +1,4 @@
-/* TaskList.css */
+
 
 body {
   font-family: 'Arial', sans-serif;
@@ -15,7 +15,7 @@ body {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation for the task list container */
+  animation: fadeIn 0.5s ease-in-out; 
 }
 
 @keyframes fadeIn {
@@ -36,7 +36,7 @@ h1 {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation for filter buttons */
+  animation: fadeIn 0.5s ease-in-out; 
 }
 
 .filter-buttons button {
@@ -68,8 +68,8 @@ h1 {
   margin-bottom: 16px;
   background-color: #673ab7;
   transition: background-color 0.3s ease-in-out;
-  width: 100%; /* Display one item per line */
-  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation for tasks */
+  width: 100%; 
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .task:hover {
@@ -119,16 +119,16 @@ h1 {
   color: #fff;
 }
 
-/* Responsive Design */
+
 
 @media only screen and (max-width: 992px) {
   .task {
-    width: 100%; /* Full width on medium screens */
+    width: 100%; 
   }
 }
 
 @media only screen and (max-width: 600px) {
   .task {
-    width: 100%; /* Full width on small screens */
+    width: 100%; 
   }
 }
