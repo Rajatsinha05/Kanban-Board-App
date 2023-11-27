@@ -1,58 +1,111 @@
 /* nav.css */
 
 .navbar {
-    background-color: #1a1a1a;
-    color: white;
-    padding: 15px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .navbar-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navbar-logo img {
-    width: 150px; /* Adjust the logo size as needed */
-  }
-  
-  .navbar-links {
-    display: flex;
-    align-items: center;
-  }
-  
+  background-color: #1a1a1a;
+  color: white;
+  padding: 15px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo img {
+  width: 150px; /* Adjust the logo size as needed */
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: white;
+  margin: 0 10px;
+  font-size: 1rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-link:hover {
+  color: #ff9900; /* Highlight color on hover */
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #333;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.user-icon:hover {
+  background-color: #ff9900; /* Highlight color on hover */
+}
+
+/* Media queries for responsive design */
+/* nav.css */
+
+/* ... (previous styles) */
+
+/* Media queries for responsive design */
+
+/* Mobile screens */
+@media only screen and (max-width: 600px) {
   .navbar-link {
-    text-decoration: none;
-    color: white;
-    margin-left: 20px;
-    font-size: 1rem;
-    transition: color 0.3s ease-in-out;
+      font-size: 0.9rem;
+      margin: 0 8px;
   }
-  
-  .navbar-link:hover {
-    color: #ff9900; /* Highlight color on hover */
-  }
-  
-  /* Additional styling for a clean user icon */
+
   .user-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #333;
-    margin-left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    text-decoration: none;
-    color: white;
-    transition: background-color 0.3s ease-in-out;
+      margin-left: 8px;
   }
-  
-  .user-icon:hover {
-    background-color: #ff9900; /* Highlight color on hover */
+}
+
+/* Small tablets and larger phones */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+  .navbar-link {
+      font-size: 1rem;
+      margin: 0 10px;
   }
-  
+
+  .user-icon {
+      margin-left: 10px;
+  }
+}
+
+/* Tablets (e.g., iPad) */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .navbar-link {
+      font-size: 1.1rem;
+      margin: 0 12px;
+  }
+
+  .user-icon {
+      margin-left: 12px;
+  }
+}
+
+/* Larger screens (Laptops, Desktops, etc.) */
+@media only screen and (min-width: 1025px) {
+  .navbar-link {
+      font-size: 1.2rem;
+      margin: 0 14px;
+  }
+
+  .user-icon {
+      margin-left: 14px;
+  }
+}
